@@ -25,3 +25,16 @@
 .big-pit{
     pointer-events: none;
 }
+
+.border-top{
+    border-top-width: 2px !important;
+}
+.border-bottom{
+    border-bottom-width: 2px !important;
+}
+.border-left{
+    border-left-width: 2px !important;
+}
+.border-right {
+    border-right-width: 2px !important;
+}
