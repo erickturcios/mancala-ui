@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -9,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RouterModule } from '@angular/router';
 import { AboutComponent } from './about/about.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { AboutComponent } from './about/about.component';
     ConfigurationComponent,
     GameComponent,
     HistoryComponent,
-    AboutComponent
+    AboutComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -24,10 +27,10 @@ import { AboutComponent } from './about/about.component';
     RouterModule.forRoot([
       {path: 'main', component: AboutComponent},
       {path: 'configuration', component: ConfigurationComponent},
-      {path: 'history', component: HistoryComponent},
       {path: 'play', component: GameComponent},
       {path: '**', redirectTo: 'main'}, /*Not Found redirect*/
     ]),
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

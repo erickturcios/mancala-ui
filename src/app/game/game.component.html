@@ -5,7 +5,7 @@
         </thead>
         <tbody>
             <tr>
-                <td> <span> Player 1</span> </td>
+                <td> <span>{{playerTop.alias}}</span> </td>
                 <td class="text-center"> <i class="bi bi-arrow-left"></i></td>
                 <td class="text-center"> <i class="bi bi-arrow-left"></i></td>
                 <td class="text-center"> <i class="bi bi-arrow-left"></i></td>
@@ -16,48 +16,48 @@
             </tr>
             <tr>
                 <td rowspan="2">
-                    <button type="button" class="btn btn-primary btn-rectangle btn-xl big-pit">0</button>
+                    <button type="button" class="btn btn-primary btn-rectangle btn-xl big-pit">{{playerTop.total}}</button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-success btn-circle btn-xl">0</button>
+                    <button type="button" (click)="onMovement(true, 5)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[5]}}</button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-success btn-circle btn-xl">0</button>
+                    <button type="button" (click)="onMovement(true, 4)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[4]}}</button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-success btn-circle btn-xl">0</button>
+                    <button type="button" (click)="onMovement(true, 3)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[3]}}</button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-success btn-circle btn-xl">0</button>
+                    <button type="button" (click)="onMovement(true, 2)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[2]}}</button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-success btn-circle btn-xl">0</button>
+                    <button type="button" (click)="onMovement(true, 1)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[1]}}</button>
                 </td>
                 <td class="border-right">
-                    <button type="button" class="btn btn-success btn-circle btn-xl">0</button>
+                    <button type="button" (click)="onMovement(true, 0)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[0]}}</button>
                 </td>
                 <td rowspan="2">
-                    <button type="button" class="btn btn-primary btn-rectangle btn-xl big-pit">0</button>
+                    <button type="button" class="btn btn-primary btn-rectangle btn-xl big-pit">{{playerBottom.total}}</button>
                 </td>
             </tr>
             <tr>
                 <td class="border-left border-top">
-                    <button type="button" class="btn btn-success btn-circle btn-xl">0</button>
+                    <button type="button" (click)="onMovement(false, 0)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[0]}}</button>
                 </td>
                 <td class="border-top">
-                    <button type="button" class="btn btn-success btn-circle btn-xl">0</button>
+                    <button type="button" (click)="onMovement(false, 1)"  class="btn btn-success btn-circle btn-xl">{{playerTop.pits[1]}}</button>
                 </td>
                 <td class="border-top">
-                    <button type="button" class="btn btn-success btn-circle btn-xl">0</button>
+                    <button type="button" (click)="onMovement(false, 2)"  class="btn btn-success btn-circle btn-xl">{{playerTop.pits[2]}}</button>
                 </td>
                 <td class="border-top">
-                    <button type="button" class="btn btn-success btn-circle btn-xl">0</button>
+                    <button type="button" (click)="onMovement(false, 3)"  class="btn btn-success btn-circle btn-xl">{{playerTop.pits[3]}}</button>
                 </td>
                 <td class="border-top">
-                    <button type="button" class="btn btn-success btn-circle btn-xl">0</button>
+                    <button type="button" (click)="onMovement(false, 4)"  class="btn btn-success btn-circle btn-xl">{{playerTop.pits[4]}}</button>
                 </td>
                 <td class="border-top">
-                    <button type="button" class="btn btn-success btn-circle btn-xl">0</button>
+                    <button type="button" (click)="onMovement(false, 5)"  class="btn btn-success btn-circle btn-xl">{{playerTop.pits[5]}}</button>
                 </td>
             </tr>
             <tr>
@@ -68,12 +68,12 @@
                 <td class="text-center"> <i class="bi bi-arrow-right"></i></td>
                 <td class="text-center"> <i class="bi bi-arrow-right"></i></td>
                 <td class="text-center"> <i class="bi bi-arrow-right"></i></td>
-                <td> <span> Player 2</span> </td>
+                <td> <span>{{playerTop.alias}}</span> </td>
             </tr>
         </tbody>
     </table>
 </div>
-<div class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
-        <button type="button" class="btn btn-danger">Danger</button>
-        <button type="button" class="btn btn-warning">Warning</button>
+<div class="col-12 text-center mt-5">
+        <button type="button" class="btn btn-outline-primary me-3" (click)="onNewgame()">Start New Game</button>
+        <button type="button" class="btn btn-outline-dark me-3" (click)="onBackStep()">Undo Movement</button>
 </div>

@@ -1,37 +1,46 @@
 <div class="container" style="max-width: 500px;">
-    
-    <div class="mb-3 form-group">
-        <label for="exampleFormControlSelect1">Initial Number of stones</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>4</option>
-          <option>5</option>
-          <option selected>6</option>
-          <option>7</option>
-          <option>8</option>
-        </select>
-      </div>
-    <div class="mb-3 form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
-            Step back is allowed
-        </label>
-    </div>
-    <div class="mb-3 form-check">
-        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-        <label class="form-check-label" for="flexCheckDefault">
-            Auto rotate
-        </label>
-    </div>
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Player 1 Alias</label>
-        <input type="text" class="form-control" id="player1" placeholder="Player 1">
-    </div>
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Player 2 Alias</label>
-        <input type="text" class="form-control" id="player2" placeholder="Player 2">
-    </div>
-    <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
+    <form [formGroup]="configurationForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <div *ngIf="f['numberOfStones']?.invalid && (f['numberOfStones']?.dirty || f['numberOfStones']?.touched)">
+                <app-alert *ngIf="f['numberOfStones']?.errors?.['required']"
+                    [msg]="'Initial number of stones is required.'" />
+            </div>
+
+        </div>
+
+        <div class="mb-3 form-group">
+            <label for="numberOfStones">Initial Number of stones</label>
+            <select class="form-control" id="numberOfStones" formControlName="numberOfStones">
+                <option *ngFor="let idx of numericRange" [ngValue]="idx">{{idx}}</option>
+            </select>
+        </div>
+        <div class="mb-3 form-check">
+            <input class="form-check-input" type="checkbox" value="" id="stepBackAllowed"
+                formControlName="stepBackAllowed">
+            <label class="form-check-label" for="stepBackAllowed">
+                Step back is allowed
+            </label>
+        </div>
+        <div class="mb-3 form-check">
+            <input class="form-check-input" type="checkbox" value="" id="autoRotate" formControlName="autoRotate">
+            <label class="form-check-label" for="autoRotate">
+                Auto rotate
+            </label>
+        </div>
+        <div class="mb-3">
+            <label for="aliasPlayer1" class="form-label">Player 1 Alias</label>
+            <input type="text" class="form-control" id="aliasPlayer1" placeholder="Player 1"
+                formControlName="aliasPlayer1">
+        </div>
+        <div class="mb-3">
+            <label for="aliasPlayer2" class="form-label">Player 2 Alias</label>
+            <input type="text" class="form-control" id="aliasPlayer2" placeholder="Player 2"
+                formControlName="aliasPlayer2">
+        </div>
+        <div class="col-12 text-center mt-5">
+            <button type="submit" class="btn btn-outline-primary me-3" [disabled]="!configurationForm.valid">Save
+                changes</button>
+            <button type="button" class="btn btn-outline-dark me-3" (click)="onReset()">Undo changes</button>
+        </div>
+    </form>
 </div>
