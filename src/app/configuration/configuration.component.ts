@@ -1,16 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { AbstractControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AlertComponent } from '../alert/alert.component';
 import { ConfigurationService } from '../service/configuration.service';
 import { ConfigurationDto } from '../dto/configuration-dto';
 import { GameSessionService } from '../service/game-session.service';
+import { ToastService } from '../service/toast.service';
+import { ToastsContainerComponent } from '../toasts/toasts-container.component';
 
 @Component({
   selector: 'app-configuration',
   templateUrl: './configuration.component.html',
   styleUrls: ['./configuration.component.css']
 })
-export class ConfigurationComponent {
+export class ConfigurationComponent  implements OnDestroy {
   
   numericRange = [3,4,5,6,7,8];
 
@@ -26,7 +28,8 @@ export class ConfigurationComponent {
   constructor(
     private fb: FormBuilder,
     private configService: ConfigurationService,
-    private sessionService: GameSessionService
+    private sessionService: GameSessionService,
+    private toastService: ToastService
     ) { 
     
   }
@@ -63,6 +66,7 @@ export class ConfigurationComponent {
               aliasPlayer1: [dto.alias1],
               aliasPlayer2: [dto.alias2],
             });
+            this.toastService.show('Configuration saved successfully', { classname: 'bg-success text-light', delay: 10000 });
       }
     );
   }
@@ -84,8 +88,8 @@ export class ConfigurationComponent {
     );
   }
   
-  /*
-  onReset(): void {
-    this.configurationForm.reset();
-  }*/
+  
+	ngOnDestroy(): void {
+		this.toastService.clear();
+	}
 }
