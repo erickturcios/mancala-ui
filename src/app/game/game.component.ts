@@ -15,6 +15,9 @@ export class GameComponent {
    playerTop:Player;
    playerBottom:Player;
    configuration:ConfigurationDto;
+   winner:number;
+   winnerMsg:string="Player wins";
+   NowinnerMsg:string="Tied game";
 
    constructor(
       private gameService: GameService,
@@ -23,6 +26,7 @@ export class GameComponent {
       this.playerTop = new Player();
       this.playerBottom = new Player();
       this.configuration = new ConfigurationDto();
+      this.winner = 0;
    }
 
    private initialize(){
@@ -32,7 +36,8 @@ export class GameComponent {
    }
 
    ngOnInit():void{
-     this.onNewgame();
+     //load previous game if any exists
+     this.onMovement(0, -1);
    }
 
    onNewgame():void{
@@ -66,6 +71,20 @@ export class GameComponent {
       this.configuration = dto.configuration;
       let rotate = this.configuration.autorotate && dto.playerToMoveNext == 2;
       this.sessionService.saveLocalSessionId(dto.configuration.gameSession);
+      this.winner = dto.winner;
+      if(this.winner >0){
+        switch(this.winner){
+          case 1:
+            this.winnerMsg = (this.configuration.alias1 ?? 'Player 1') + ' wins!!!'
+          break;
+          case 2:
+            this.winnerMsg = (this.configuration.alias2 ?? 'Player 2') + ' wins!!!'
+          break;
+          case 3:
+            this.winnerMsg = this.NowinnerMsg;
+          break;
+        }
+      }
 
       if(rotate){
         //player Top => Player 1
@@ -83,7 +102,7 @@ export class GameComponent {
         if(dto.playerToMoveNext == 1){
           this.playerTop.nextToMove = true;
           
-        }else{
+        }else if(dto.playerToMoveNext == 2){
           this.playerBottom.nextToMove = true;
         }
 
@@ -103,14 +122,42 @@ export class GameComponent {
         
         if(dto.playerToMoveNext == 2){
           this.playerTop.nextToMove = true;
-        }else{
+        }else if(dto.playerToMoveNext == 1){
           this.playerBottom.nextToMove = true;
         }
 
       }
-      
-      this.playerTop.disabled = !this.playerTop.nextToMove;      
-      this.playerBottom.disabled = !this.playerBottom.nextToMove;
+      for(let i=0; i<6;i++){
+        let topHasZeroStones = this.playerTop.pits[i] == 0;
+        let bottomHasZeroStones = this.playerBottom.pits[i] == 0;
+        switch(i){
+          case 0:
+            this.playerTop.disabled00 = topHasZeroStones || !this.playerTop.nextToMove;
+            this.playerBottom.disabled00 = bottomHasZeroStones || !this.playerBottom.nextToMove;
+          break;
+          case 1:
+            this.playerTop.disabled01 = topHasZeroStones || !this.playerTop.nextToMove;
+            this.playerBottom.disabled01 = bottomHasZeroStones || !this.playerBottom.nextToMove;
+          break;
+          case 2:
+            this.playerTop.disabled02 = topHasZeroStones || !this.playerTop.nextToMove;
+            this.playerBottom.disabled02 = bottomHasZeroStones || !this.playerBottom.nextToMove;
+          break;
+          case 3:
+            this.playerTop.disabled03 = topHasZeroStones || !this.playerTop.nextToMove;
+            this.playerBottom.disabled03 = bottomHasZeroStones || !this.playerBottom.nextToMove;
+          break;
+          case 4:
+            this.playerTop.disabled04 = topHasZeroStones || !this.playerTop.nextToMove;
+            this.playerBottom.disabled04 = bottomHasZeroStones || !this.playerBottom.nextToMove;
+          break;
+          case 5:
+            this.playerTop.disabled05 = topHasZeroStones || !this.playerTop.nextToMove;
+            this.playerBottom.disabled05 = bottomHasZeroStones || !this.playerBottom.nextToMove;
+          break;
+        }
+        
+      }
       
    }
 }

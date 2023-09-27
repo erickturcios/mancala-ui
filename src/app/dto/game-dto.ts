@@ -11,5 +11,6 @@ export class GameDto{
     createdOn!: Date;
     updatedOn?: Date;
     playerToMoveNext!:number;
+    winner!:number;
 
 }

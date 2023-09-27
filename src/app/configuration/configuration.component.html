@@ -10,32 +10,32 @@
 
         <div class="mb-3 form-group">
             <label for="numberOfStones">Initial Number of stones</label>
-            <select class="form-control" id="numberOfStones" formControlName="numberOfStones">
+            <select class="form-control" id="numberOfStones" formControlName="numberOfStones" ngbTooltip="New games will start with this number of stones on each pit" placement="end">
                 <option *ngFor="let idx of numericRange" [ngValue]="idx">{{idx}}</option>
             </select>
         </div>
         <div class="mb-3 form-check">
             <input class="form-check-input" type="checkbox" value="" id="stepBackAllowed"
                 formControlName="stepBackAllowed">
-            <label class="form-check-label" for="stepBackAllowed">
+            <label class="form-check-label" for="stepBackAllowed" ngbTooltip="Players are enabled to Undo movements" placement="end">
                 Step back is allowed
             </label>
         </div>
         <div class="mb-3 form-check">
-            <input class="form-check-input" type="checkbox" value="" id="autoRotate" formControlName="autoRotate">
-            <label class="form-check-label" for="autoRotate">
+            <input class="form-check-input" type="checkbox" value="" id="autoRotate" formControlName="autoRotate" >
+            <label class="form-check-label" for="autoRotate" ngbTooltip="Board will rotate after each player's turn" placement="end">
                 Auto rotate
             </label>
         </div>
         <div class="mb-3">
             <label for="aliasPlayer1" class="form-label">Player 1 Alias</label>
             <input type="text" class="form-control" id="aliasPlayer1" placeholder="Player 1"
-                formControlName="aliasPlayer1">
+                formControlName="aliasPlayer1" ngbTooltip="Label used for Player 1" placement="end">
         </div>
         <div class="mb-3">
             <label for="aliasPlayer2" class="form-label">Player 2 Alias</label>
             <input type="text" class="form-control" id="aliasPlayer2" placeholder="Player 2"
-                formControlName="aliasPlayer2">
+                formControlName="aliasPlayer2" ngbTooltip="Label used for Player 2" placement="end">
         </div>
         <div class="col-12 text-center mt-5">
             <button type="submit" class="btn btn-outline-primary me-3" [disabled]="!configurationForm.valid">Save

@@ -1,4 +1,9 @@
 <div class="text-center">
+    <div class="container">
+        <div *ngIf="winner > 0" class="alert alert-success" role="alert">
+            <strong>{{winnerMsg}}</strong>
+        </div>
+    </div>
     <table class="table-full-width">
         <thead>
 
@@ -19,22 +24,22 @@
                     <button type="button" class="btn btn-primary btn-rectangle btn-xl big-pit">{{playerTop.total}}</button>
                 </td>
                 <td>
-                    <button type="button" [disabled]="playerTop.disabled" (click)="onMovement(playerTop.playerId, 5)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[5]}}</button>
+                    <button type="button" [disabled]="playerTop.disabled05" (click)="onMovement(playerTop.playerId, 5)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[5]}}</button>
                 </td>
                 <td>
-                    <button type="button" [disabled]="playerTop.disabled" (click)="onMovement(playerTop.playerId, 4)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[4]}}</button>
+                    <button type="button" [disabled]="playerTop.disabled04" (click)="onMovement(playerTop.playerId, 4)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[4]}}</button>
                 </td>
                 <td>
-                    <button type="button" [disabled]="playerTop.disabled" (click)="onMovement(playerTop.playerId, 3)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[3]}}</button>
+                    <button type="button" [disabled]="playerTop.disabled03" (click)="onMovement(playerTop.playerId, 3)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[3]}}</button>
                 </td>
                 <td>
-                    <button type="button" [disabled]="playerTop.disabled" (click)="onMovement(playerTop.playerId, 2)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[2]}}</button>
+                    <button type="button" [disabled]="playerTop.disabled02" (click)="onMovement(playerTop.playerId, 2)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[2]}}</button>
                 </td>
                 <td>
-                    <button type="button" [disabled]="playerTop.disabled" (click)="onMovement(playerTop.playerId, 1)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[1]}}</button>
+                    <button type="button" [disabled]="playerTop.disabled01" (click)="onMovement(playerTop.playerId, 1)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[1]}}</button>
                 </td>
                 <td class="border-right">
-                    <button type="button" [disabled]="playerTop.disabled" (click)="onMovement(playerTop.playerId, 0)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[0]}}</button>
+                    <button type="button" [disabled]="playerTop.disabled00" (click)="onMovement(playerTop.playerId, 0)" class="btn btn-success btn-circle btn-xl">{{playerTop.pits[0]}}</button>
                 </td>
                 <td rowspan="2">
                     <button type="button" class="btn btn-primary btn-rectangle btn-xl big-pit">{{playerBottom.total}}</button>
@@ -42,22 +47,22 @@
             </tr>
             <tr>
                 <td class="border-left border-top">
-                    <button type="button" [disabled]="playerBottom.disabled" (click)="onMovement(playerBottom.playerId, 0)" class="btn btn-success btn-circle btn-xl">{{playerBottom.pits[0]}}</button>
+                    <button type="button" [disabled]="playerBottom.disabled00" (click)="onMovement(playerBottom.playerId, 0)" class="btn btn-success btn-circle btn-xl">{{playerBottom.pits[0]}}</button>
                 </td>
                 <td class="border-top">
-                    <button type="button" [disabled]="playerBottom.disabled" (click)="onMovement(playerBottom.playerId, 1)"  class="btn btn-success btn-circle btn-xl">{{playerBottom.pits[1]}}</button>
+                    <button type="button" [disabled]="playerBottom.disabled01" (click)="onMovement(playerBottom.playerId, 1)"  class="btn btn-success btn-circle btn-xl">{{playerBottom.pits[1]}}</button>
                 </td>
                 <td class="border-top">
-                    <button type="button" [disabled]="playerBottom.disabled" (click)="onMovement(playerBottom.playerId, 2)"  class="btn btn-success btn-circle btn-xl">{{playerBottom.pits[2]}}</button>
+                    <button type="button" [disabled]="playerBottom.disabled02" (click)="onMovement(playerBottom.playerId, 2)"  class="btn btn-success btn-circle btn-xl">{{playerBottom.pits[2]}}</button>
                 </td>
                 <td class="border-top">
-                    <button type="button" [disabled]="playerBottom.disabled" (click)="onMovement(playerBottom.playerId, 3)"  class="btn btn-success btn-circle btn-xl">{{playerBottom.pits[3]}}</button>
+                    <button type="button" [disabled]="playerBottom.disabled03" (click)="onMovement(playerBottom.playerId, 3)"  class="btn btn-success btn-circle btn-xl">{{playerBottom.pits[3]}}</button>
                 </td>
                 <td class="border-top">
-                    <button type="button" [disabled]="playerBottom.disabled" (click)="onMovement(playerBottom.playerId, 4)"  class="btn btn-success btn-circle btn-xl">{{playerBottom.pits[4]}}</button>
+                    <button type="button" [disabled]="playerBottom.disabled04" (click)="onMovement(playerBottom.playerId, 4)"  class="btn btn-success btn-circle btn-xl">{{playerBottom.pits[4]}}</button>
                 </td>
                 <td class="border-top">
-                    <button type="button" [disabled]="playerBottom.disabled" (click)="onMovement(playerBottom.playerId, 5)"  class="btn btn-success btn-circle btn-xl">{{playerBottom.pits[5]}}</button>
+                    <button type="button" [disabled]="playerBottom.disabled05" (click)="onMovement(playerBottom.playerId, 5)"  class="btn btn-success btn-circle btn-xl">{{playerBottom.pits[5]}}</button>
                 </td>
             </tr>
             <tr>
