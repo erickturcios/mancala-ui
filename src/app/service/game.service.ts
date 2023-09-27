@@ -43,6 +43,16 @@ export class GameService {
             );
   }
 
+  undoMovement(sessionId: string){
+    let url = `${environment.apiURL}/game/undoMovement/${sessionId}`;
+    return this.http.put<GameDto>(url,'')
+          .pipe(
+              catchError(
+                this.handleError<GameDto>('undoMovement')
+              )
+            );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
   

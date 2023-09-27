@@ -80,5 +80,5 @@
 </div>
 <div class="col-12 text-center mt-5">
         <button type="button" class="btn btn-outline-primary me-3" (click)="onNewgame()">Start New Game</button>
-        <button *ngIf="configuration.stepBackAllowed" type="button" class="btn btn-outline-dark me-3" (click)="onBackStep()">Undo Movement</button>
+        <button *ngIf="configuration.stepBackAllowed" type="button" class="btn btn-outline-dark me-3" (click)="onUndoMovement()">Undo Last Movement</button>
 </div>

@@ -62,8 +62,13 @@ export class GameComponent {
       );
    }
 
-   onBackStep():void{
-    //TODO: call service to move 1 step backward
+   onUndoMovement():void{
+    let sessionId = this.sessionService.getLocalSessionId();
+    this.gameService.undoMovement(sessionId).subscribe(
+      dto => {
+            this.fillGameInfo(dto);
+      }
+    );
    }
 
    private fillGameInfo(dto: GameDto):void{
