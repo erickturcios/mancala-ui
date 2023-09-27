@@ -1,7 +1,7 @@
 
 export class ConfigurationDto{
     id?:number;
-    gameSession?:string;
+    gameSession!:string;
     numberOfStones?:number;
     stepBackAllowed?:boolean;
     autorotate?:boolean;

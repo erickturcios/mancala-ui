@@ -4,4 +4,5 @@ export class Player{
     public total: number = 0;
     public playerId:number = 0;
     public nextToMove = false;
+    public disabled  = false;
 }

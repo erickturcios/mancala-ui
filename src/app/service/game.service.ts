@@ -10,6 +10,7 @@ import {
 import { environment } from '../../environments/environment';
 import { GameSessionService } from './game-session.service';
 import { GameDto } from '../dto/game-dto';
+import { Movement } from '../dto/movement';
 
 
 @Injectable({
@@ -28,6 +29,16 @@ export class GameService {
           .pipe(
               catchError(
                 this.handleError<GameDto>('createNewGame')
+              )
+            );
+  }
+
+  move(movement: Movement){
+    let url = `${environment.apiURL}/game`;
+    return this.http.put<GameDto>(url,movement)
+          .pipe(
+              catchError(
+                this.handleError<GameDto>('move')
               )
             );
   }

@@ -54,7 +54,7 @@ export class ConfigurationComponent {
     dto.stepBackAllowed = this.configurationForm.controls['stepBackAllowed'].value;
     this.configService.saveConfiguration(dto).subscribe(
       dto => {
-            let sessionId = dto.gameSession ?? '';
+            let sessionId = dto.gameSession;
             this.sessionService.saveLocalSessionId(sessionId);
             this.configurationForm = this.fb.group({
               numberOfStones: [dto.numberOfStones, Validators.required],
@@ -71,7 +71,7 @@ export class ConfigurationComponent {
     let sessionId = this.sessionService.getLocalSessionId();
     this.configService.getOrCreateConfiguration(sessionId).subscribe(
       dto => {
-            let sessionId = dto.gameSession ?? '';
+            let sessionId = dto.gameSession;
             this.sessionService.saveLocalSessionId(sessionId);
             this.configurationForm = this.fb.group({
               numberOfStones: [dto.numberOfStones, Validators.required],

@@ -4,6 +4,7 @@ import { GameService } from '../service/game.service';
 import { GameSessionService } from '../service/game-session.service';
 import { GameDto } from '../dto/game-dto';
 import { ConfigurationDto } from '../dto/configuration-dto';
+import { Movement } from '../dto/movement';
 
 @Component({
   selector: 'app-game',
@@ -19,6 +20,12 @@ export class GameComponent {
       private gameService: GameService,
       private sessionService: GameSessionService
     ){
+      this.playerTop = new Player();
+      this.playerBottom = new Player();
+      this.configuration = new ConfigurationDto();
+   }
+
+   private initialize(){
     this.playerTop = new Player();
     this.playerBottom = new Player();
     this.configuration = new ConfigurationDto();
@@ -38,26 +45,28 @@ export class GameComponent {
    }
 
    onMovement(player:number, idx:number):void{
-    //TODO: call service to record movement
+      let movement = new Movement();
+      movement.gameSession = this.sessionService.getLocalSessionId();;
+      movement.index = idx;
+      movement.playerId = player;
+
+      this.gameService.move(movement).subscribe(
+        dto => {
+              this.fillGameInfo(dto);
+        }
+      );
    }
 
    onBackStep():void{
     //TODO: call service to move 1 step backward
    }
 
-   onRotate():void{
-    //TODO: rotate player positions in board
-   }
-
-   
-
-   private setPlayerInfo(player: Player, ):void{
-
-   }
-
    private fillGameInfo(dto: GameDto):void{
+      this.initialize();
       this.configuration = dto.configuration;
       let rotate = this.configuration.autorotate && dto.playerToMoveNext == 2;
+      this.sessionService.saveLocalSessionId(dto.configuration.gameSession);
+
       if(rotate){
         //player Top => Player 1
         this.playerTop.alias = this.configuration.alias1 ?? 'Player 1';
@@ -73,6 +82,7 @@ export class GameComponent {
 
         if(dto.playerToMoveNext == 1){
           this.playerTop.nextToMove = true;
+          
         }else{
           this.playerBottom.nextToMove = true;
         }
@@ -98,6 +108,9 @@ export class GameComponent {
         }
 
       }
+      
+      this.playerTop.disabled = !this.playerTop.nextToMove;      
+      this.playerBottom.disabled = !this.playerBottom.nextToMove;
       
    }
 }
