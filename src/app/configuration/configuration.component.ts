@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { AbstractControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AlertComponent } from '../alert/alert.component';
+import { ConfigurationService } from '../service/configuration.service';
+import { ConfigurationDto } from '../dto/configuration-dto';
+import { GameSessionService } from '../service/game-session.service';
 
 @Component({
   selector: 'app-configuration',
@@ -15,23 +18,21 @@ export class ConfigurationComponent {
     numberOfStones: [''],
     stepBackAllowed: [false],
     autoRotate: [false],
-    aliasPlayer1: ['PLayer 1'],
-    aliasPlayer2: ['Player 2'],
+    aliasPlayer1: [''],
+    aliasPlayer2: [''],
   });
 
 
-  constructor(private fb: FormBuilder) { 
+  constructor(
+    private fb: FormBuilder,
+    private configService: ConfigurationService,
+    private sessionService: GameSessionService
+    ) { 
     
   }
 
   ngOnInit(): void{
-    this.configurationForm = this.fb.group({
-      numberOfStones: ['', Validators.required],
-      stepBackAllowed: [''],
-      autoRotate: [''],
-      aliasPlayer1: [''],
-      aliasPlayer2: [''],
-    });
+    this.reload();
   }
 
   get f(): { [key: string]: AbstractControl } {
@@ -39,17 +40,52 @@ export class ConfigurationComponent {
   }
 
   onSubmit():void{
-    console.warn(this.configurationForm.value);
-    
     if (this.configurationForm.invalid) {
       return;
     }
+    let sessionId = this.sessionService.getLocalSessionId();
 
-    //TODO: add post request
+    let dto = new ConfigurationDto();
+    dto.alias1 = this.configurationForm.controls['aliasPlayer1'].value;
+    dto.alias2 = this.configurationForm.controls['aliasPlayer2'].value;
+    dto.autorotate = this.configurationForm.controls['autoRotate'].value;
+    dto.gameSession = sessionId;
+    dto.numberOfStones = this.configurationForm.controls['numberOfStones'].value;
+    dto.stepBackAllowed = this.configurationForm.controls['stepBackAllowed'].value;
+    this.configService.saveConfiguration(dto).subscribe(
+      dto => {
+            let sessionId = dto.gameSession ?? '';
+            this.sessionService.saveLocalSessionId(sessionId);
+            this.configurationForm = this.fb.group({
+              numberOfStones: [dto.numberOfStones, Validators.required],
+              stepBackAllowed: [dto.stepBackAllowed],
+              autoRotate: [dto.autorotate],
+              aliasPlayer1: [dto.alias1],
+              aliasPlayer2: [dto.alias2],
+            });
+      }
+    );
   }
 
+  private reload(){
+    let sessionId = this.sessionService.getLocalSessionId();
+    this.configService.getOrCreateConfiguration(sessionId).subscribe(
+      dto => {
+            let sessionId = dto.gameSession ?? '';
+            this.sessionService.saveLocalSessionId(sessionId);
+            this.configurationForm = this.fb.group({
+              numberOfStones: [dto.numberOfStones, Validators.required],
+              stepBackAllowed: [dto.stepBackAllowed],
+              autoRotate: [dto.autorotate],
+              aliasPlayer1: [dto.alias1],
+              aliasPlayer2: [dto.alias2],
+            });
+      }
+    );
+  }
   
+  /*
   onReset(): void {
     this.configurationForm.reset();
-  }
+  }*/
 }

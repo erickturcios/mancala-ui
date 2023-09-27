@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import { AppComponent } from './app.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
@@ -31,6 +33,7 @@ import { AlertComponent } from './alert/alert.component';
       {path: '**', redirectTo: 'main'}, /*Not Found redirect*/
     ]),
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
