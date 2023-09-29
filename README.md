@@ -1,27 +1,22 @@
 # MancalaUi
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3. It's the UI for a mancala game, with the [backend](https://github.com/erickturcios/mancala-backend) built with Java 21 (Spring boot)
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Screenshots
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Tab 1 - About
 
-## Build
+![start](src/assets/img/play-ui-01.jpg)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Tab 2 - Board
 
-## Running unit tests
+![start](src/assets/img/play-ui-02.jpg)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Tab 3 - Settings
 
-## Running end-to-end tests
+![start](src/assets/img/play-ui-03.jpg)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
